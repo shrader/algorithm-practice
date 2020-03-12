@@ -28,11 +28,11 @@ You may compute the following table:
 
 Rank    Team	For : Against	GD	Points
 1.	    Team 4	  5 : 1	        +4	    5
-2.	    Team 5	  6 : 4	        +2      4
-3.  	  Team 3    4 : 3	        +1	    4
-4.	    Team 0	  3 : 5     	  -2	    2
+2.	    Team 5	  6 : 4	        +2            4
+3.  	    Team 3          4 : 3	        +1	    4
+4.	    Team 0	  3 : 5          -2	    2
 4.	    Team 1	  3 : 5	        -2	    2
-6.	    Team 2	  2 : 5     	  -3	    1
+6.	    Team 2	  2 : 5          -3	    1
 Team 5 and Team 3 reached the same number of points. But since Team 5 got a better scoring differential, it ranks better than Team 3. All values of Team 0 and Team 1 are the same, so these teams share the fourth place.
 
 In this example you have to return the array [4, 4, 6, 3, 1, 2].
