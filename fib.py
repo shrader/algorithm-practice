@@ -1,5 +1,5 @@
 """
-Recursion practice with fibonacci numbers (up to 1000 but could be adjusted for any #).
+Recursion practice with fibonacci numbers (up to 999 but could be adjusted for any #).
 Trying the dynamic programing approach with storing values that were already calculated.
 
 """
