@@ -79,34 +79,38 @@ function  chooseBestSum(t, k, ls) {
   let answers = [];
   let arr = ls;
   let sum = 0;
-  function rabbitHole(nums, townCount, choices ) {
+   //get every unique combination (order doesnt matter for sum a+b+c == c+a+b)
+   //by looping through each element, adding the current element to curr until curr.length = k 
+   //each time taking an array (by slicing) of possible combinations that it hasn't used yet
+   //and going through each of those
+  function rabbitHole(nums, townCount, choices ) { //nums holding the numbers to be summed, townCount = how many more numbers we need to add, choices are distances we haven't yet combined with our current combo
     console.log('nums: '+ nums + ' townCount: ' + townCount);
-    if (townCount <= 0 || nums.count >= k ) {
+    if (townCount <= 0 || nums.count >= k ) { //this is supposed to check that we dont try to sum more than k numbers, but I still have a bug that will let it have too many numbers inside.
       return;
     } else {
-      for (let j = 0; j < choices.length-k; j++) {
+      for (let j = 0; j < choices.length-k; j++) { 
         console.log(`j:${j} num:${choices[j]}`);
-          nums.push(choices[j]);
-          if (nums.count <= k) {
-            let currAnswer = nums.reduce((a,b)=>a+b);
-            answers.push(currAnswer);
+          nums.push(choices[j]); //add the current number to the nums/curr array to be summed
+          if (nums.count <= k) { //if you reached your target # of distances
+            let currAnswer = nums.reduce((a,b)=>a+b); //sum them together by reducing the array
+            answers.push(currAnswer); //add the answer to answers array
             console.log(`added ${answers}`);
-            break;
+            break; //break the loop since you have the answer for this iteration
           }
-          rabbitHole(nums, townCount -1, choices.slice(j+1));
+          rabbitHole(nums, townCount -1, choices.slice(j+1)); //otherwise call rabbitHole again b/c you have more #'s to add
       }
       return
     }
   }
-  for (let i = 0; i < arr.length-k; i++){
-    if (answers.includes(t)) {
-      return t;
+  for (let i = 0; i < arr.length-k; i++){ // loop through the initial full array
+    if (answers.includes(t)) { //if lets say your on the the third element but you have already found the best sum
+      return t; //return that because there is no better sum, so no need to continue
     }
-    let curr = [arr[i]];
-    rabbitHole(curr, k - curr.length, arr.slice(i+1) ) 
+    let curr = [arr[i]]; //make container to hold numbers to be combined, add the curent element to start
+    rabbitHole(curr, k - curr.length, arr.slice(i+1) ) //call rabbitHole([container for nums to combine], #of nums left to add, [arr of #'s that havent been used yet])
       
   }
     console.log(answers);
-    answers = answers.filter(a => a <= t);
-    return Math.max(...answers);
+    answers = answers.filter(a => a <= t); //only keep values that are less than or equal to t (target distance)
+    return Math.max(...answers); //return the one that is closest to the distance which should be the "Best sum"
 }
