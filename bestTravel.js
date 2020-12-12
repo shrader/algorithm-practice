@@ -39,7 +39,11 @@ function chooseBestSum(t, k, ls) {
   
 
   function rabbitHole(arr,setLimit, target, dists) {
-
+    
+    if (answers.includes(t)) {
+      return
+    } 
+    
     if (setLimit === 0 ) {      
      console.log(arr);
      answers.push(arr.reduce((a,b)=> a + b));
